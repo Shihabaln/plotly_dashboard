@@ -44,7 +44,7 @@ def return_figures():
 
     """
 
-  # first chart plots arable land from 2000 to 2020 in top 10 economies 
+  # first chart plots GDP per capita from 2000 to 2020 in top 10 economies 
   # as a line chart
     
     graph_one = []
@@ -71,59 +71,25 @@ def return_figures():
                 yaxis = dict(title = 'US$'),
                 )
 
-# second chart plots ararble land for 2015 as a bar chart    
+# second chart plots GDP per capita for 2020 as a bar chart    
     graph_two = []
     df = cleandata('data/API_NY.GDP.PCAP.CD_DS2_en_csv_v2_3632113.csv')
     df.columns = ['country','year','GDPpercapita']
     df.sort_values('GDPpercapita', ascending=False, inplace=True)
-    df = df[df['year'] == 2020] 
+    df = df[df['year'] == 2020]  
 
-    for country in countrylist:
-      x_val = df[df['country'] == country].year.tolist()
-      y_val =  df[df['country'] == country].GDPpercapita.tolist()
-      graph_two.append(dict(
-        type='choropleth',
-        locations = df.country.unique().tolist(),
-        autocolorscale = True,
-        z = df[df['country'] == country].GDPpercapita.tolist(),
-        locationmode = 'country names',
-        marker = dict(
-          line = dict (
-            color = 'rgb(255,255,255)',width = 2),
-            colorbar = dict(
-              title = 'Millions USD'))
-              ))
-      layout_two = dict(title = 'Top Countries by GDP per capital')
-          
+    graph_two.append(
+      go.Bar(
+      x = df.country.tolist(),
+      y = df.GDPpercapita.tolist(),
+      )
+    )
 
-
-
-
-# # third chart plots percent of population that is rural from 1990 to 2015
-#     graph_three = []
-#     df = cleandata('data/API_SP.RUR.TOTL.ZS_DS2_en_csv_v2_9948275.csv')
-#     df.columns = ['country', 'year', 'percentrural']
-#     df.sort_values('percentrural', ascending=False, inplace=True)
-#     for country in countrylist:
-#       x_val = df[df['country'] == country].year.tolist()
-#       y_val =  df[df['country'] == country].percentrural.tolist()
-#       graph_three.append(
-#           go.Scatter(
-#           x = x_val,
-#           y = y_val,
-#           mode = 'lines',
-#           name = country
-#           )
-#       )
-
-#     layout_three = dict(title = 'Change in Rural Population <br> (Percent of Total Population)',
-#                 xaxis = dict(title = 'Year',
-#                   autotick=False, tick0=1990, dtick=25),
-#                 yaxis = dict(title = 'Percent'),
-#                 )
-    
-
-    
+    layout_two = dict(title = 'GDP per capita in 2020',
+                xaxis = dict(title = 'Country',),
+                yaxis = dict(title = 'Us$'),
+                )
+              
     # append all charts to the figures list
     figures = []
     figures.append(dict(data=graph_one, layout=layout_one))
