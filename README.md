@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ```
 
 To install [herokucli] (https://devcenter.heroku.com/articles/heroku-cli)
-
+Check if it's installed 
 ```
 heroku --version
 ```
