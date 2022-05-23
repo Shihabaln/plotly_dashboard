@@ -1,6 +1,6 @@
 # GDP per capita dash 
 
-Data visualisation was used to illustrae GDP per capita for the top countries in the world. Using data from world bank data. [here] (https://data.worldbank.org/indicator/NY.GDP.PCAP.CD)
+Data visualisation was used to illustrae GDP per capita for the top countries in the world. Using data from world bank data.[here](https://data.worldbank.org/indicator/NY.GDP.PCAP.CD)
 
 View the dashboard [here](https://plotly-dashboardv2.herokuapp.com/).
 
